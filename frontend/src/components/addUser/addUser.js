@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {useNavigate} from "react-router-dom"
 
 const AddUser = () => {
   const [formData, setFormData] = useState({
@@ -8,13 +9,29 @@ const AddUser = () => {
     status: "",
     admin: "",
   });
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("user", formData.user);
-    console.log("name", formData.name);
-    console.log("password", formData.password);
-    console.log("status", formData.status);
-    console.log("admin", formData.admin);
+    // console.log("user", formData.user);
+    // console.log("name", formData.name);
+    // console.log("password", formData.password);
+    // console.log("status", formData.status);
+    // console.log("admin", formData.admin);
+
+    try {
+      const response = await fetch("http://localhost:5000/api/user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json(response);
+      console.log(data);
+      navigate("/maintain")
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 
   const handleInputChange = (event) => {
