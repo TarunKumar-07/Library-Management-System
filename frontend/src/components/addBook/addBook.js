@@ -1,19 +1,35 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddBook = () => {
   const [formData, setFormData] = useState({
     bm: "",
     name: "",
-    password: "",
     date: "",
     copies: "",
   });
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("bm", formData.bm);
-    console.log("name", formData.name);
-    console.log("date", formData.date);
-    console.log("copies", formData.copies);
+    // console.log("bm", formData.bm);
+    // console.log("name", formData.name);
+    // console.log("date", formData.date);
+    // console.log("copies", formData.copies);
+
+    try {
+      const response = await fetch("http://localhost:5000/api/book", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json(response);
+      console.log(data);
+      navigate("/maintain");
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 
   const handleInputChange = (event) => {

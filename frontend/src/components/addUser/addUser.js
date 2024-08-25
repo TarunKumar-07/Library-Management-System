@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 const AddUser = () => {
   const [formData, setFormData] = useState({
@@ -28,7 +28,7 @@ const AddUser = () => {
       });
       const data = await response.json(response);
       console.log(data);
-      navigate("/maintain")
+      navigate("/maintain");
     } catch (error) {
       console.error(error.message);
     }

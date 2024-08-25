@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddMember = () => {
   const [formData, setFormData] = useState({
@@ -10,15 +11,30 @@ const AddMember = () => {
     eDate: "",
     membership: "",
   });
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("fName", formData.fName);
-    console.log("lName", formData.lName);
-    console.log("contactNo", formData.contactNo);
-    console.log("addhar", formData.addhar);
-    console.log("sDate", formData.sDate);
-    console.log("eDate", formData.eDate);
-    console.log("membership", formData.membership);
+    // console.log("fName", formData.fName);
+    // console.log("lName", formData.lName);
+    // console.log("contactNo", formData.contactNo);
+    // console.log("addhar", formData.addhar);
+    // console.log("sDate", formData.sDate);
+    // console.log("eDate", formData.eDate);
+    // console.log("membership", formData.membership);
+    try {
+      const response = await fetch("http://localhost:5000/api/member", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json(response);
+      console.log(data);
+      navigate("/maintain");
+    } catch (error) {
+      console.error(error.message);
+    }
   };
   const handleInputChange = (event) => {
     const { name, value } = event.target;
