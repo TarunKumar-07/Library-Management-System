@@ -1,6 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const MembershipMaster = () => {
+  const [members, setMembers] = useState([]);
+
+  useEffect(() => {
+    const fetchMembers = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/member");
+        const data = await response.json();
+        setMembers(data);
+      } catch (error) {
+        console.error("error while fetchinf members:", error.message);
+      }
+    };
+    fetchMembers();
+  },[]);
+
   return (
     <div className="container mt-4">
       <table className="table table-borderless">
@@ -24,22 +39,25 @@ const MembershipMaster = () => {
             <th>Status</th>
             <th>Amount Pending</th>
           </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
+          {members.map((member) => (
+            <tr>
+              <td>{member._id}</td>
+              <td>{member.fName}</td>
+              <td>{member.lName}</td>
+              <td>{member.contactNo}</td>
+              <td>{member.addhar}</td>
+              <td>{member.sDate}</td>
+              <td>{member.eDate}</td>
+              <td>{member.membership}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
       <div className="text-end">
         <button className="btn btn-primary">
-          <a href="/report" className="text-white">Back</a>
+          <a href="/report" className="text-white">
+            Back
+          </a>
         </button>
         <button className="btn btn-secondary">Log Out</button>
       </div>

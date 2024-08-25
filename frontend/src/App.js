@@ -4,8 +4,6 @@ import UserHome from "./components/userHome/userHome";
 import Transaction from "./components/transaction/transaction";
 import Report from "./components/report/report";
 import Maintanence from "./components/maintenance/maintenance";
-import Home from "./components/home/home";
-import UserLogin from "./components/userLogin/userLogin";
 import AdminLogin from "./components/adminLogin/adminLogin";
 import AddMember from "./components/addMember/addMember";
 import UpdateMember from "./components/updateMember/updateMember";
@@ -27,9 +25,7 @@ import PayFine from "./components/payFine/payFine";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home></Home>}></Route>
-      <Route path="/user" element={<UserLogin></UserLogin>}></Route>
-      <Route path="/admin" element={<AdminLogin></AdminLogin>}></Route>
+      <Route path="/" element={<AdminLogin></AdminLogin>}></Route>
       <Route path="/admin-home" element={<AdminHome></AdminHome>}></Route>
       <Route path="/user-home" element={<UserHome></UserHome>}></Route>
       <Route path="/transaction" element={<Transaction></Transaction>}></Route>

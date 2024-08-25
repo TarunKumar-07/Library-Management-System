@@ -57,11 +57,31 @@ You need to install dependencies for both the backend and frontend. Follow these
 
 ### 3. MongoDB Server
 
-Ensure that your MongoDB server is running. You can start it by using the command:
+1. Ensure that your MongoDB server is running. You can start it by using the command:
 
-```bash
-mongod
-```
+   ```bash
+   mongod
+   ```
+
+2. For first time you need to add user data manually because there is no registration page, if exist then all user make itself admin
+   Full MongoDB Shell Commands
+   Here is the full set of commands you would run in the MongoDB shell to create the database and insert the document:
+
+   ```bash
+   use LibraryManagementSystem
+
+   db.users.insertOne({
+   _id: ObjectId(),
+   user: "admin",
+   name: "admin",
+   password: "admin",
+   status: "active",
+   admin: "yes",
+   __v: 0
+   })
+   ```
+
+   After running these commands, the LibraryManagementSystem database will be created (if it does not already exist), and the users collection will be created with one document that has the specified fields.
 
 ### 4. Run the Application
 

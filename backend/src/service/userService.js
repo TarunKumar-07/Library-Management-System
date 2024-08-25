@@ -9,6 +9,23 @@ class UserService {
   async getAllUsers() {
     return await User.find();
   }
+
+  async getLoginUser(name, password) {
+    // Find user by name
+    const user = await User.findOne({ name: name });
+
+    // Check if user exists
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    // Compare plain text passwords (not recommended for production)
+    if (user.password !== password) {
+      throw new Error("Invalid password");
+    }
+
+    return user;
+  }
 }
 
 module.exports = new UserService();

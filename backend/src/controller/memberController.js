@@ -19,6 +19,15 @@ class MemberController {
       res.status(500).json({ error: error.message });
     }
   }
+
+  async getAllMembers(req, res) {
+    try {
+      const members = await memberService.getAllMembers();
+      res.json(members);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
 }
 
 module.exports = new MemberController();

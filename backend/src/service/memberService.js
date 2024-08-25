@@ -21,6 +21,9 @@ class MemberService {
     });
     return await newMember.save();
   }
+  async getAllMembers() {
+    return await Member.find();
+  }
 }
 
 module.exports = new MemberService();

@@ -1,13 +1,59 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const AdminLogin = () => {
   const [formData, setFormData] = useState({
     name: "",
     password: "",
   });
+  const navigate = useNavigate();
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   // console.log("name", formData.name);
+  //   // console.log("password", formData.password);
+
+  //   try {
+  //     const response = await fetch("http://localhost:5000/api/user/login", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(formData),
+  //     });
+  //     const data = await response.json(response);
+  //     console.log(data);
+  //     navigate("/");
+  //   } catch (error) {
+  //     console.error(error.message);
+  //   }
+  // };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("name", formData.name);
-    console.log("password", formData.password);
+
+    try {
+      const response = await fetch("http://localhost:5000/api/user/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Login failed. Please check your credentials.");
+      }
+
+      const data = await response.json();
+      console.log(data);
+      if (data.admin === "yes") {
+        navigate("/admin-home");
+      } else {
+        navigate("/user-home");
+      }
+    } catch (error) {
+      console.error(error.message);
+      // Optionally handle error state here
+    }
   };
 
   const handleInputChange = (event) => {
@@ -50,9 +96,7 @@ const AdminLogin = () => {
         </div>
         <div className="d-grid">
           <button type="submit" className="btn btn-primary">
-            <a href="/admin-home" className="text-decoration-none text-white">
-              Login
-            </a>
+            Login
           </button>
         </div>
       </form>
