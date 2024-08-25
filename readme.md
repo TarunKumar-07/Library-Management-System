@@ -55,7 +55,7 @@ You need to install dependencies for both the backend and frontend. Follow these
    npm install
    ```
 
-### 3. Start the MongoDB Server
+### 3. MongoDB Server
 
 Ensure that your MongoDB server is running. You can start it by using the command:
 
@@ -67,7 +67,14 @@ mongod
 
 After installing all dependencies and ensuring MongoDB is running, you can start the application:
 
-#### Backend
+#### You can run both(Frontend & Backend) at a time
+
+1. In main directory open cmd and run the command :
+   ```bash
+   npm start
+   ```
+
+#### You want to run only Backend
 
 1. Navigate back to the backend directory:
 
@@ -80,7 +87,7 @@ After installing all dependencies and ensuring MongoDB is running, you can start
    npm start
    ```
 
-#### Frontend
+#### You want to run only Frontend
 
 1. Navigate to the frontend directory:
 
