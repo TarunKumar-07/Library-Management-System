@@ -6,26 +6,6 @@ const AdminLogin = () => {
     password: "",
   });
   const navigate = useNavigate();
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   // console.log("name", formData.name);
-  //   // console.log("password", formData.password);
-
-  //   try {
-  //     const response = await fetch("http://localhost:5000/api/user/login", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(formData),
-  //     });
-  //     const data = await response.json(response);
-  //     console.log(data);
-  //     navigate("/");
-  //   } catch (error) {
-  //     console.error(error.message);
-  //   }
-  // };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -65,6 +45,9 @@ const AdminLogin = () => {
   };
   return (
     <div className="container m-5">
+    <h2>Welcome to</h2>
+    <h1>Library Management System</h1>
+    <h4>Login to Continue</h4>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="adminName" className="form-label">
